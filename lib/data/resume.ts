@@ -50,7 +50,7 @@ export const resumeData = {
         "Collaborated effectively with a cross-functional team throughout the complete project life cycle, ensuring the design, testing, and deployment of software solutions strictly aligned with business needs, accelerating delivery timelines by 10%.",
         "Leveraged strong analytical skills to troubleshoot complex system issues, debug legacy code, and implement tailored technical solutions that improved overall application stability by 15%."
       ],
-      shortSummary: "Accelerated delivery timelines by 10%, improved stability by 15%"
+      shortSummary: "Virtual internship — built a simple web application."
     }
   ],
   projects: [
