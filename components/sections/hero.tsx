@@ -6,15 +6,15 @@ import { ArrowDown, FileDown, MapPin } from "lucide-react";
 import { AnimatedBackground } from "@/components/ui/animated-background";
 
 export function Hero({ location }: { location?: string | null }) {
-  const [greeting, setGreeting] = useState("Hello");
+  const [greeting, setGreeting] = useState("");
 
   useEffect(() => {
+    const hour = new Date().getHours();
+    const timeGreeting = hour < 12 ? "Good morning" : hour < 18 ? "Good afternoon" : "Good evening";
     if (location) {
-      const hour = new Date().getHours();
-      const timeGreeting = hour < 12 ? "Good Morning" : hour < 18 ? "Good Afternoon" : "Good Evening";
-      setGreeting(`${timeGreeting} to you in ${location}. I am`);
+      setGreeting(`${timeGreeting} from ${location}`);
     } else {
-      setGreeting("Hello, I'm");
+      setGreeting(timeGreeting);
     }
   }, [location]);
 
@@ -34,23 +34,42 @@ export function Hero({ location }: { location?: string | null }) {
             Coimbatore, Tamil Nadu
           </motion.div>
 
-          <div className="max-w-4xl space-y-6">
+          <div className="max-w-4xl space-y-5">
+            {/* Greeting tag */}
+            {greeting && (
+              <motion.p
+                initial={{ y: 12, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.02, duration: 0.45, ease: "easeOut" }}
+                className="text-base text-neutral-400 sm:text-lg"
+              >
+                {greeting} —
+              </motion.p>
+            )}
+
+            {/* Name */}
             <motion.h1
               initial={{ y: 32, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.05, duration: 0.6, ease: "easeOut" }}
-              className="font-display text-5xl font-semibold tracking-tight text-white sm:text-6xl lg:text-8xl"
+              transition={{ delay: 0.08, duration: 0.6, ease: "easeOut" }}
+              className="font-display text-6xl font-semibold tracking-tight text-white sm:text-7xl lg:text-8xl"
             >
-              {greeting} <span className="inline-flex translate-y-[-0.06em] items-center align-middle"><span className="mx-3 inline-flex h-14 w-14 items-center justify-center rounded-full border border-cyan-300/30 bg-cyan-400/10 text-lg font-semibold text-cyan-100 shadow-[0_0_36px_rgba(34,211,238,0.18)] sm:h-16 sm:w-16">SP</span></span>Sabarish.
+              <span className="block">I am</span>
+              <span className="flex items-center gap-3">
+                <span className="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-cyan-300/30 bg-cyan-400/10 text-lg font-semibold text-cyan-100 shadow-[0_0_36px_rgba(34,211,238,0.18)] sm:h-16 sm:w-16">
+                  SP
+                </span>
+                Sabarish.
+              </span>
             </motion.h1>
 
             <motion.p
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.15, duration: 0.55, ease: "easeOut" }}
-              className="max-w-2xl text-lg leading-8 text-neutral-400 sm:text-xl"
+              transition={{ delay: 0.18, duration: 0.55, ease: "easeOut" }}
+              className="max-w-xl text-base leading-7 text-neutral-400 sm:text-lg"
             >
-                Aspiring Software &amp; Product Developer. MCA @ PSG Tech.
+              Aspiring Software &amp; Product Developer. MCA @ PSG Tech.
             </motion.p>
           </div>
 
