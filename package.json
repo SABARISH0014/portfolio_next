@@ -4,18 +4,29 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build --experimental-app-only",
     "start": "next start",
     "lint": "eslint app components lib"
   },
   "dependencies": {
+    "@ai-sdk/openai": "^4.0.18",
+    "@ai-sdk/react": "^4.0.38",
+    "@react-three/drei": "^10.7.7",
+    "@react-three/fiber": "^9.6.1",
+    "@splinetool/react-spline": "^4.1.0",
+    "@types/canvas-confetti": "^1.9.0",
+    "@vercel/og": "^0.8.5",
+    "ai": "^7.0.35",
+    "canvas-confetti": "^1.9.4",
     "clsx": "^2.1.1",
+    "cmdk": "^1.1.1",
     "framer-motion": "^12.23.0",
     "lucide-react": "^0.541.0",
-    "next": "^15.4.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "tailwind-merge": "^3.3.1"
+    "next": "^16.2.11",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "tailwind-merge": "^3.3.1",
+    "three": "^0.185.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
@@ -23,6 +34,7 @@
     "@types/node": "^24.1.0",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
+    "@types/three": "^0.185.1",
     "eslint": "^9.32.0",
     "eslint-config-next": "^15.4.0",
     "postcss": "^8.5.6",
