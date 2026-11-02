@@ -23,6 +23,13 @@ export function AITwinWidget() {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isThinking]);
 
+  // Listen for the command-palette "Chat with AI Twin" action
+  useEffect(() => {
+    const handleOpenAITwin = () => setIsOpen(true);
+    window.addEventListener("portfolio:open-ai-twin", handleOpenAITwin);
+    return () => window.removeEventListener("portfolio:open-ai-twin", handleOpenAITwin);
+  }, []);
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
   };

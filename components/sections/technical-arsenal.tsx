@@ -1,21 +1,25 @@
 import { BentoCard } from "@/components/ui/bento-card";
 import { Code2, Database, Workflow } from "lucide-react";
+import { resumeData } from "@/lib/data/resume";
 
 const arsenal = [
   {
+    category: "Core Stack",
     title: "Languages",
     icon: Code2,
-    items: ["Java", "JavaScript", "Kotlin", "Dart", "C"]
+    items: resumeData.skills.languages
   },
   {
+    category: "Application Layer",
     title: "Frameworks",
     icon: Workflow,
-    items: ["NodeJS", "Express", "Next.JS", "Flutter"]
+    items: resumeData.skills.frameworks
   },
   {
-    title: "Databases & Tools",
+    category: "Data & Credentials",
+    title: "Databases, Tools & Certs",
     icon: Database,
-    items: ["MongoDB", "SQLite", "Git"]
+    items: [...resumeData.skills.databasesAndTools, ...resumeData.skills.certifications]
   }
 ];
 
@@ -36,7 +40,7 @@ export function TechnicalArsenal() {
               <div className="flex h-full flex-col">
                 <div className="flex items-center justify-between gap-4">
                   <div>
-                    <p className="text-sm uppercase tracking-[0.32em] text-neutral-500">{group.title}</p>
+                    <p className="text-sm uppercase tracking-[0.32em] text-neutral-500">{group.category}</p>
                     <h3 className="mt-2 font-display text-2xl font-semibold text-white">{group.title}</h3>
                   </div>
                   <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.03] text-cyan-200">

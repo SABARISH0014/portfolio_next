@@ -7,6 +7,7 @@ import { CurrentlySkeleton } from "@/components/sections/currently-skeleton";
 import { TechnicalArsenal } from "@/components/sections/technical-arsenal";
 import { Journey } from "@/components/sections/journey";
 import { Projects } from "@/components/sections/projects";
+import { RecentActivity } from "@/components/sections/recent-activity";
 import { Contact } from "@/components/sections/contact";
 
 export const experimental_ppr = true;
@@ -26,6 +27,9 @@ export default async function Home() {
         </Suspense>
         <Journey />
         <Projects />
+        <Suspense>
+          <RecentActivity />
+        </Suspense>
         <Contact />
       </main>
     </div>

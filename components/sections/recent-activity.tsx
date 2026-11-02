@@ -18,7 +18,7 @@ export async function RecentActivity() {
     // Fetches your latest 4 repositories directly from GitHub
     // ISR caching ensures the server only re-runs this fetch once per hour
     const res = await fetch("https://api.github.com/users/SABARISH0014/repos?sort=updated&per_page=4", {
-      next: { revalidate: 3600 } 
+      next: { revalidate: 3600 }
     });
 
     if (!res.ok) throw new Error("Failed to fetch");
@@ -42,32 +42,32 @@ export async function RecentActivity() {
       ) : (
         <div className="grid gap-4 md:grid-cols-2">
           {repos.map((repo) => (
-            <a key={repo.id} href={repo.html_url} target="_blank" rel="noopener noreferrer" className="block group">
-              <BentoCard className="h-full flex flex-col justify-between transition-transform duration-300 group-hover:-translate-y-1">
-                <div>
-                  <div className="flex items-center justify-between mb-3">
-                    <h3 className="font-semibold text-white text-lg">{repo.name}</h3>
-                    <div className="flex items-center gap-1.5 text-neutral-400">
-                      <Star className="h-4 w-4 text-cyan-300/50" />
-                      <span className="text-xs">{repo.stargazers_count}</span>
-                    </div>
+            // Pass href directly to BentoCard — it renders as motion.a when href is provided,
+            // avoiding the invalid nested <a> hydration error from wrapping with an external <a>.
+            <BentoCard key={repo.id} href={repo.html_url} className="h-full flex flex-col justify-between">
+              <div>
+                <div className="flex items-center justify-between mb-3">
+                  <h3 className="font-semibold text-white text-lg">{repo.name}</h3>
+                  <div className="flex items-center gap-1.5 text-neutral-400">
+                    <Star className="h-4 w-4 text-cyan-300/50" />
+                    <span className="text-xs">{repo.stargazers_count}</span>
                   </div>
-                  <p className="text-sm text-neutral-400 mb-6 line-clamp-2">
-                    {repo.description || "No description provided."}
-                  </p>
                 </div>
+                <p className="text-sm text-neutral-400 mb-6 line-clamp-2">
+                  {repo.description || "No description provided."}
+                </p>
+              </div>
 
-                {repo.topics && repo.topics.length > 0 && (
-                  <div className="flex flex-wrap gap-2">
-                    {repo.topics.slice(0, 3).map((topic) => (
-                      <span key={topic} className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-[10px] uppercase tracking-wider text-neutral-200">
-                        {topic}
-                      </span>
-                    ))}
-                  </div>
-                )}
-              </BentoCard>
-            </a>
+              {repo.topics && repo.topics.length > 0 && (
+                <div className="flex flex-wrap gap-2">
+                  {repo.topics.slice(0, 3).map((topic) => (
+                    <span key={topic} className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-[10px] uppercase tracking-wider text-neutral-200">
+                      {topic}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </BentoCard>
           ))}
         </div>
       )}

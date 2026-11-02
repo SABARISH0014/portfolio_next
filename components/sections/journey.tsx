@@ -2,25 +2,30 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { GraduationCap, Briefcase } from "lucide-react";
 import { BentoCard } from "@/components/ui/bento-card";
 import { resumeData } from "@/lib/data/resume";
+
+// Extracts the first 4-digit year anywhere in the string (handles "Aug. 2024 - Sep. 2024")
+const extractYear = (str: string) => {
+  const match = str.match(/\b(20\d{2})\b/);
+  return match ? parseInt(match[1], 10) : 0;
+};
 
 const journey = [
   ...resumeData.education.map(edu => ({
     year: edu.duration,
     title: `${edu.degree} @ ${edu.institution}`,
-    detail: edu.score
+    detail: `${edu.score} · ${edu.location}`,
+    type: "education" as const
   })),
   ...resumeData.experience.map(exp => ({
     year: exp.duration,
     title: `${exp.role} @ ${exp.company}`,
-    detail: exp.shortSummary
+    detail: exp.highlights[0] ?? exp.shortSummary,
+    type: "experience" as const
   }))
-].sort((a, b) => {
-  // Sort descending by start year
-  const getYear = (str: string) => parseInt(str.substring(0, 4)) || 0;
-  return getYear(b.year) - getYear(a.year);
-});
+].sort((a, b) => extractYear(b.year) - extractYear(a.year));
 
 type JourneyItemProps = {
   entry: (typeof journey)[number];
@@ -28,6 +33,16 @@ type JourneyItemProps = {
   isLast: boolean;
   total: number;
   progress: ReturnType<typeof useScroll>["scrollYProgress"];
+};
+
+const TypeBadge = ({ type }: { type: "education" | "experience" }) => {
+  const Icon = type === "education" ? GraduationCap : Briefcase;
+  return (
+    <div className="flex items-center gap-1.5 rounded-full border border-white/[0.06] bg-white/[0.03] px-2.5 py-1 text-[10px] uppercase tracking-[0.25em] text-neutral-500">
+      <Icon className="h-3 w-3" />
+      {type}
+    </div>
+  );
 };
 
 function JourneyItem({ entry, index, isLast, total, progress }: JourneyItemProps) {
@@ -82,7 +97,10 @@ function JourneyItem({ entry, index, isLast, total, progress }: JourneyItemProps
           {entry.year}
         </span>
         <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-5 transition-all duration-300 hover:border-cyan-300/20 hover:bg-white/[0.03]">
-          <h3 className="text-lg font-medium text-white">{entry.title}</h3>
+          <div className="flex items-start justify-between gap-3">
+            <h3 className="text-lg font-medium text-white">{entry.title}</h3>
+            <TypeBadge type={entry.type} />
+          </div>
           <p className="mt-2 text-sm leading-7 text-neutral-400">{entry.detail}</p>
         </div>
       </div>

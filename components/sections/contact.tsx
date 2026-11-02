@@ -87,6 +87,14 @@ export function Contact() {
       <p className="mt-6 text-xs text-neutral-600">
         Response within 24 hrs · +91 8148246432
       </p>
+
+      {/* Power-user discovery hint */}
+      <div className="mt-5 inline-flex items-center gap-2 rounded-full border border-white/[0.06] bg-white/[0.02] px-4 py-2 text-[11px] text-neutral-500">
+        <kbd className="font-sans text-neutral-400">⌘K</kbd>
+        <span>/</span>
+        <kbd className="font-sans text-neutral-400">Ctrl+K</kbd>
+        <span>for Command Palette · CLI Mode available</span>
+      </div>
     </section>
   );
 }

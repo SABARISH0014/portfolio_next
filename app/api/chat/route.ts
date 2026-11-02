@@ -25,22 +25,11 @@ RESUME DATA:
 ${JSON.stringify(resumeData, null, 2)}`;
 
 const FALLBACK_MODELS = [
+  'openrouter/free',
   'google/gemma-4-31b-it:free',
   'nvidia/nemotron-3-super-120b-a12b:free',
   'google/gemma-4-26b-a4b-it:free',
   'openai/gpt-oss-20b:free',
-  'nvidia/nemotron-3-ultra-550b-a55b:free',
-  'poolside/laguna-m.1:free',
-  'poolside/laguna-s-2.1:free',
-  'poolside/laguna-xs-2.1:free',
-  'cohere/north-mini-code:free',
-  'nvidia/nemotron-3-nano-30b-a3b:free',
-  'nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free',
-  'nvidia/nemotron-nano-12b-v2-vl:free',
-  'nvidia/nemotron-nano-9b-v2:free',
-  'google/lyria-3-pro-preview',
-  'google/lyria-3-clip-preview',
-  'nvidia/nemotron-3.5-content-safety:free'
 ];
 
 export async function POST(req: Request) {

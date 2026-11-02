@@ -4,7 +4,7 @@ import "./globals.css";
 import { CustomCursor } from "@/components/ui/custom-cursor";
 import { CommandPalette } from "@/components/ui/command-palette";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://sabarishp.me";
 
 const inter = Inter({
   subsets: ["latin"],

@@ -1,17 +1,27 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Terminal } from "lucide-react";
+import { useTerminal } from "@/components/ui/terminal-provider";
 
 const links = [
-  { label: "Currently", href: "#currently" },
   { label: "Arsenal", href: "#arsenal" },
+  { label: "Currently", href: "#currently" },
   { label: "Journey", href: "#journey" },
   { label: "Projects", href: "#projects" },
+  { label: "Activity", href: "#recent-activity" },
   { label: "Contact", href: "#contact" }
 ];
 
 export function Navbar() {
+  const { setTerminalMode } = useTerminal();
+
+  const openCommandPalette = () => {
+    window.dispatchEvent(
+      new KeyboardEvent("keydown", { key: "k", metaKey: true, bubbles: true })
+    );
+  };
+
   return (
     <motion.header
       initial={{ y: -24, opacity: 0 }}
@@ -26,8 +36,7 @@ export function Navbar() {
           </div>
           <div>
             <div className="text-sm font-medium text-white">Sabarish P</div>
-            {/* Updated title to reflect your product developer transition */}
-            <div className="text-xs text-neutral-400">Product Developer</div> 
+            <div className="text-xs text-neutral-400">Software & Product Developer</div>
           </div>
         </a>
 
@@ -45,16 +54,45 @@ export function Navbar() {
           ))}
         </nav>
 
-        <motion.a
-          href="#projects"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          data-cursor="interactive"
-          className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm text-white transition-all hover:border-cyan-300/30 hover:bg-cyan-400/10"
-        >
-          Explore Work
-          <ArrowUpRight className="h-4 w-4" />
-        </motion.a>
+        <div className="flex items-center gap-2">
+          {/* Command Palette trigger */}
+          <motion.button
+            type="button"
+            aria-label="Open command palette"
+            title="Command Palette (⌘K / Ctrl+K)"
+            onClick={openCommandPalette}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="hidden sm:flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.03] px-3 py-2 text-xs text-neutral-400 transition-all hover:border-cyan-300/30 hover:bg-cyan-400/10 hover:text-cyan-200"
+          >
+            <kbd className="font-sans">⌘K</kbd>
+          </motion.button>
+
+          {/* Terminal Mode trigger */}
+          <motion.button
+            type="button"
+            aria-label="Open terminal mode"
+            title="Terminal / CLI Mode"
+            onClick={() => setTerminalMode(true)}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="hidden sm:flex items-center justify-center rounded-full border border-white/10 bg-white/[0.03] p-2 text-neutral-400 transition-all hover:border-cyan-300/30 hover:bg-cyan-400/10 hover:text-cyan-200"
+          >
+            <Terminal className="h-4 w-4" />
+          </motion.button>
+
+          {/* Explore Work CTA */}
+          <motion.a
+            href="#projects"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            data-cursor="interactive"
+            className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm text-white transition-all hover:border-cyan-300/30 hover:bg-cyan-400/10"
+          >
+            Explore Work
+            <ArrowUpRight className="h-4 w-4" />
+          </motion.a>
+        </div>
       </div>
     </motion.header>
   );
