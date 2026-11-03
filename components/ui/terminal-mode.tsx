@@ -151,12 +151,12 @@ export function TerminalMode() {
         break;
       case "download": {
         triggerDownload();
-        output = "checkmark projects.txt downloaded successfully.";
+        output = "✓ projects.txt downloaded successfully.";
         break;
       }
       case "resume": {
         triggerResumeDownload();
-        output = "checkmark Sabarish_P_Resume.pdf downloading...";
+        output = "✓ Sabarish_P_Resume.pdf downloading...";
         break;
       }
       case "clear":

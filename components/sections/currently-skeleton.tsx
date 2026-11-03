@@ -10,7 +10,7 @@ export function CurrentlySkeleton() {
         </div>
       </div>
 
-      <BentoCard className="p-0">
+      <BentoCard className="p-0" interactive={false}>
         <div className="grid gap-px bg-white/[0.03] md:grid-cols-2">
           <div className="min-h-[180px] animate-pulse p-6 md:p-8">
             <div className="flex h-full flex-col justify-between gap-6">

@@ -10,9 +10,17 @@ type BentoCardProps = {
   href?: string; // New prop for GitHub redirection
   onClick?: () => void;
   controls?: ReactNode;
+  interactive?: boolean;
 };
 
-export function BentoCard({ children, className, href, onClick, controls }: BentoCardProps) {
+export function BentoCard({
+  children,
+  className,
+  href,
+  onClick,
+  controls,
+  interactive = true,
+}: BentoCardProps) {
   // If an href is provided, render as an anchor tag, otherwise a div
   const Component = href ? motion.a : motion.div;
 
@@ -22,14 +30,15 @@ export function BentoCard({ children, className, href, onClick, controls }: Bent
       target={href ? "_blank" : undefined}
       rel={href ? "noopener noreferrer" : undefined}
       onClick={onClick}
-      whileHover={{ scale: 1.02, y: -4 }}
-      whileTap={{ scale: 0.98 }}
+      whileHover={interactive ? { scale: 1.02, y: -4 } : undefined}
+      whileTap={interactive ? { scale: 0.98 } : undefined}
       transition={{ type: "spring", stiffness: 400, damping: 25 }}
       className={cn(
         "group relative overflow-hidden rounded-2xl border border-white/5 bg-white/[0.02] p-6 backdrop-blur-xl transition-colors hover:border-cyan-400/30 hover:bg-white/[0.03]",
         "before:pointer-events-none before:absolute before:inset-0 before:bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.16),transparent_45%)] before:opacity-0 before:transition-opacity before:duration-300 group-hover:before:opacity-100",
         "after:pointer-events-none after:absolute after:inset-px after:rounded-2xl after:border after:border-white/[0.04] after:opacity-100",
-        "portfolio-glow block cursor-pointer",
+        "portfolio-glow block",
+        interactive && "cursor-pointer",
         className
       )}
     >

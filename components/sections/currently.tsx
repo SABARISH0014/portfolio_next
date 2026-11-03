@@ -67,7 +67,7 @@ export function Currently() {
         </div>
       </div>
 
-      <BentoCard className="p-0">
+      <BentoCard className="p-0" interactive={false}>
         <div className="grid gap-px bg-white/[0.03] md:grid-cols-2">
           {updates.map((item) => {
             const Icon = item.icon;

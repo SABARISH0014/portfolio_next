@@ -17,11 +17,11 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Sabarish P | Aspiring Software & Product Developer",
-  description: "Premium personal portfolio for Sabarish P, Aspiring Software & Product Developer in Coimbatore, Tamil Nadu.",
+  title: "Sabarish P | Software, AI & Product Developer",
+  description: "Premium personal portfolio for Sabarish P, Software, AI & Product Developer in Coimbatore, Tamil Nadu.",
   metadataBase: new URL(siteUrl),
   openGraph: {
-    title: "Sabarish P | Aspiring Software & Product Developer",
+    title: "Sabarish P | Software, AI & Product Developer",
     description: "Premium personal portfolio for Sabarish P in Coimbatore, Tamil Nadu.",
     type: "website",
     images: [
