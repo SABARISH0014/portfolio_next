@@ -12,7 +12,13 @@ import { Contact } from "@/components/sections/contact";
 
 export default async function Home() {
   const headersList = await headers();
-  const location = headersList.get("x-vercel-ip-city");
+  const rawLocation =
+    headersList.get("x-vercel-ip-city") ||
+    headersList.get("cf-ipcity") ||
+    headersList.get("x-geo-city") ||
+    headersList.get("x-city") ||
+    null;
+  const location = rawLocation ? decodeURIComponent(rawLocation) : null;
 
   return (
     <div className="relative min-h-screen overflow-x-clip">

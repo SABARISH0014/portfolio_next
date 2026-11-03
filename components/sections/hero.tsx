@@ -5,19 +5,54 @@ import { motion } from "framer-motion";
 import { ArrowDown, FileDown, MapPin } from "lucide-react";
 import { AnimatedBackground } from "@/components/ui/animated-background";
 
-export function Hero({ location }: { location?: string | null }) {
+export function Hero({ location: initialLocation }: { location?: string | null }) {
+  const [city, setCity] = useState<string | null>(initialLocation || null);
   const [greeting, setGreeting] = useState("");
+
+  useEffect(() => {
+    if (initialLocation) {
+      setCity(initialLocation);
+      return;
+    }
+
+    let isMounted = true;
+
+    // Client-side fallback if server headers are absent (local dev, preview, or direct IP)
+    fetch("https://ipwho.is/")
+      .then((res) => res.json())
+      .then((data) => {
+        if (isMounted && data?.success && data?.city) {
+          setCity(data.city);
+        }
+      })
+      .catch(() => {
+        try {
+          const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+          if (tz && tz.includes("/")) {
+            const tzCity = tz.split("/")[1]?.replace(/_/g, " ");
+            if (isMounted && tzCity) setCity(tzCity);
+          }
+        } catch {
+          // Keep city null
+        }
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, [initialLocation]);
 
   useEffect(() => {
     const hour = new Date().getHours();
     const timeGreeting =
       hour < 12 ? "Good morning" : hour < 18 ? "Good afternoon" : "Good evening";
-    if (location) {
-      setGreeting(`${timeGreeting} from ${location}`);
+
+    if (city) {
+      setGreeting(`${timeGreeting} to you in ${city}`);
     } else {
       setGreeting(timeGreeting);
     }
-  }, [location]);
+  }, [city]);
 
   return (
     <section
