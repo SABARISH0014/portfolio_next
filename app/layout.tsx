@@ -36,6 +36,15 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     images: ["/api/og"]
+  },
+  icons: {
+    icon: [
+      { url: "/icon.png", sizes: "512x512", type: "image/png" },
+      { url: "/favicon.ico" }
+    ],
+    apple: [
+      { url: "/apple-icon.png", sizes: "512x512", type: "image/png" }
+    ]
   }
 };
 
