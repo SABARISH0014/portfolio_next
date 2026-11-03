@@ -45,7 +45,7 @@ const ABOUT_OUTPUT = `Sabarish P -- Software, AI & Product Developer
 ------------------------------------------------------
 Batch     : MCA Batch of 2027
 Location  : Coimbatore, India
-Education : MCA @ PSG College of Technology (CGPA: 7.94)
+Education : MCA @ PSG College of Technology (CGPA: 7.87)
             BCA @ SRM IST (CGPA: 9.36)
 Focus     : Exploring how models and systems work under the hood
             and building practical features that solve real-world problems.

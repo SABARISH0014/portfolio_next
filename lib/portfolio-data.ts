@@ -1,4 +1,4 @@
-export const CGPA = 7.94;
+export const CGPA = 7.87;
 export const GITHUB_USERNAME = "SABARISH0014";
 
 export type PortfolioSignals = {

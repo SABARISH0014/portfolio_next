@@ -19,7 +19,7 @@ export const resumeData = {
       institution: "PSG College of Technology",
       degree: "Master of Computer Applications",
       duration: "July 2025 - Present",
-      score: "CGPA: 7.94",
+      score: "CGPA: 7.87",
       location: "Coimbatore, India"
     },
     {
