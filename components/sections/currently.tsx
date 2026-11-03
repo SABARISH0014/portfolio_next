@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { BentoCard } from "@/components/ui/bento-card";
 import { Code2, GraduationCap, ExternalLink } from "lucide-react";
+import { CGPA } from "@/lib/portfolio-data";
 
 type CurrentlyPayload = {
   githubStars: number;
@@ -27,9 +28,14 @@ function formatRelativeTime(iso: string): string {
 const updates = [
   {
     text: "Building 'CipherSpend' (Android NER SMS tracker) & 'SubSage'.",
-    icon: Code2
+    icon: Code2,
+    badge: "In Progress"
   },
-  { text: "Studying MCA @ PSG College of Technology.", icon: GraduationCap }
+  {
+    text: "Studying MCA @ PSG College of Technology.",
+    icon: GraduationCap,
+    badge: `${CGPA} CGPA`
+  }
 ];
 
 export function Currently() {
@@ -72,25 +78,33 @@ export function Currently() {
           {updates.map((item) => {
             const Icon = item.icon;
             return (
-              <div key={item.text} className="min-h-[180px] p-6 md:p-8">
+              <div key={item.text} className="min-h-[180px] bg-neutral-950/90 p-6 md:p-8">
                 <div className="flex h-full flex-col justify-between gap-6">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-cyan-300/20 bg-cyan-400/10 text-cyan-200">
-                    <Icon className="h-6 w-6" />
+                  <div className="flex items-center justify-between">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-cyan-300/20 bg-cyan-400/10 text-cyan-200">
+                      <Icon className="h-6 w-6" />
+                    </div>
+                    {item.badge && (
+                      <div className="rounded-full border border-cyan-300/20 bg-cyan-400/10 px-3 py-1 text-xs font-medium text-cyan-100">
+                        {item.badge}
+                      </div>
+                    )}
                   </div>
                   <p className="max-w-md text-lg leading-8 text-neutral-300">{item.text}</p>
                 </div>
               </div>
             );
           })}
-          <div className="min-h-[180px] p-6 md:col-span-2 md:p-8">
+          <div className="min-h-[180px] bg-neutral-950/90 p-6 md:col-span-2 md:p-8">
             <div className="flex h-full flex-col justify-between gap-6 rounded-[1.4rem] border border-white/5 bg-neutral-950/40 p-6">
               <div className="flex items-center justify-between gap-4">
                 <div>
                   <p className="text-xs uppercase tracking-[0.32em] text-neutral-500">Live Signal</p>
                   <p className="mt-2 text-lg font-medium text-white">GitHub pulse from SABARISH0014</p>
                 </div>
-                <div className="rounded-full border border-cyan-300/20 bg-cyan-400/10 px-3 py-1 text-xs text-cyan-100">
-                  7.87 CGPA
+                <div className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-300">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  Live
                 </div>
               </div>
               <div className="grid gap-3 text-sm text-neutral-300 sm:grid-cols-2">

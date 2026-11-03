@@ -15,7 +15,7 @@ export default async function Home() {
   const location = headersList.get("x-vercel-ip-city");
 
   return (
-    <div className="relative min-h-screen">
+    <div className="relative min-h-screen overflow-x-clip">
       <Navbar />
       <main className="mx-auto flex max-w-7xl flex-col gap-12 px-6 pb-24 pt-10 lg:px-10 lg:pb-32">
         <Hero location={location} />

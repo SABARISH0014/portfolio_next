@@ -10,15 +10,15 @@ function ParticleField() {
   const ref = useRef<THREE.Points>(null);
   const prefersReducedMotion = useReducedMotion();
 
-  // Generate random particles
+  // Generate random particles across a wide 3D space
   const count = 3000;
   const positions = useMemo(() => {
     const positions = new Float32Array(count * 3);
     for (let i = 0; i < count; i++) {
       const theta = 2 * Math.PI * Math.random();
       const phi = Math.acos(2 * Math.random() - 1);
-      const r = 20 * Math.cbrt(Math.random());
-      
+      const r = 22 * Math.cbrt(Math.random());
+
       positions[i * 3] = r * Math.sin(phi) * Math.cos(theta);
       positions[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
       positions[i * 3 + 2] = r * Math.cos(phi);
@@ -29,19 +29,18 @@ function ParticleField() {
   useFrame((state, delta) => {
     if (ref.current) {
       if (prefersReducedMotion) {
-        // Near zero movement
+        // Minimal idle drift
         ref.current.rotation.x -= delta * 0.005;
         ref.current.rotation.y -= delta * 0.007;
       } else {
-        // Interactive / idle animation
+        // Continuous ambient rotation
         ref.current.rotation.x -= delta * 0.05;
         ref.current.rotation.y -= delta * 0.07;
-        
-        // Slight mouse tracking
+
+        // Subtle pointer tracking
         const mouseX = (state.pointer.x * Math.PI) / 10;
         const mouseY = (state.pointer.y * Math.PI) / 10;
-        
-        // Smoothly interpolate rotation towards mouse
+
         ref.current.rotation.x += (mouseY - ref.current.rotation.x) * 0.02;
         ref.current.rotation.y += (mouseX - ref.current.rotation.y) * 0.02;
       }
@@ -65,14 +64,16 @@ function ParticleField() {
 
 export function AnimatedBackground() {
   return (
-    <div className="absolute top-0 left-[50%] -z-10 h-full w-[100vw] -translate-x-1/2 bg-[#09090b] overflow-hidden">
-      <Suspense fallback={<div className="bg-[#09090b] absolute inset-0 -z-10" />}>
+    <div className="pointer-events-none absolute -top-8 sm:-top-14 left-1/2 -translate-x-1/2 -z-10 h-[calc(100%+4rem)] w-screen max-w-none overflow-hidden">
+      <Suspense fallback={null}>
         <Canvas camera={{ position: [0, 0, 15] }} dpr={[1, 2]}>
-          <color attach="background" args={["#09090b"]} />
           <ambientLight intensity={0.5} />
           <ParticleField />
         </Canvas>
       </Suspense>
+
+      {/* Smooth bottom gradient fade blending seamlessly into following sections */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-neutral-950 via-neutral-950/60 to-transparent" />
     </div>
   );
 }

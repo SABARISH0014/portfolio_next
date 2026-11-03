@@ -92,6 +92,19 @@ export function TerminalMode() {
   }, [isTerminalMode]);
 
   useEffect(() => {
+    if (!isTerminalMode) return;
+
+    const handleGlobalKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setTerminalMode(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleGlobalKeyDown);
+    return () => window.removeEventListener("keydown", handleGlobalKeyDown);
+  }, [isTerminalMode, setTerminalMode]);
+
+  useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [history]);
 
@@ -192,7 +205,7 @@ export function TerminalMode() {
 
   return (
     <div
-      className="fixed inset-0 z-[1000] bg-black font-mono text-green-400 overflow-y-auto p-4 sm:p-6"
+      className="fixed inset-0 z-[1000] bg-black font-mono text-green-400 overflow-y-auto p-4 pb-10 sm:p-6 sm:pb-10"
       onClick={() => inputRef.current?.focus()}
     >
       <div className="max-w-3xl mx-auto space-y-1">
