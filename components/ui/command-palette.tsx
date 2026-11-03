@@ -68,12 +68,6 @@ type InfoCommand = {
   icon: React.ElementType;
 };
 
-type PaletteItem =
-  | SectionCommand
-  | ProjectCommand
-  | LinkCommand
-  | ActionCommand
-  | InfoCommand;
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 

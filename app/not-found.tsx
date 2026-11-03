@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function NotFound() {
   return (
     <main className="flex min-h-screen items-center justify-center bg-neutral-950 px-6 text-white">
@@ -7,6 +9,14 @@ export default function NotFound() {
         <p className="mt-3 text-sm leading-7 text-neutral-400">
           The page you are looking for does not exist.
         </p>
+        <div className="mt-6">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 rounded-full border border-cyan-500/30 bg-cyan-500/10 px-5 py-2.5 text-xs font-medium text-cyan-200 transition-colors hover:bg-cyan-500/20"
+          >
+            Return to Portfolio
+          </Link>
+        </div>
       </div>
     </main>
   );

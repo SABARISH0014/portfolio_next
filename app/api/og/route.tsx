@@ -72,7 +72,7 @@ export async function GET() {
         >
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
             <div style={labelStyle}>Sabarish P</div>
-            <div style={{ ...labelStyle, color: "rgba(103,232,249,0.9)" }}>Software Engineer</div>
+            <div style={{ ...labelStyle, color: "rgba(103,232,249,0.9)" }}>Software, AI &amp; Product Developer</div>
           </div>
 
           <div style={{ display: "flex", flexDirection: "column", gap: 22, maxWidth: 760 }}>

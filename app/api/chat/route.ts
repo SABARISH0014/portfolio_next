@@ -26,10 +26,10 @@ ${JSON.stringify(resumeData, null, 2)}`;
 
 const FALLBACK_MODELS = [
   'openrouter/free',
+  'nvidia/nemotron-3.5-lightning:free',
+  'cohere/north-mini-code:free',
   'google/gemma-4-31b-it:free',
-  'nvidia/nemotron-3-super-120b-a12b:free',
   'google/gemma-4-26b-a4b-it:free',
-  'openai/gpt-oss-20b:free',
 ];
 
 export async function POST(req: Request) {
