@@ -294,7 +294,7 @@ export function CommandPalette() {
       className="relative z-[100]"
     >
       <div className="fixed inset-0 bg-neutral-950/70 backdrop-blur-sm" />
-      <div className="fixed inset-0 flex items-start justify-center px-4 pt-20 sm:pt-24">
+      <div className="fixed inset-0 flex items-start justify-center px-4 pt-6 sm:pt-24">
         <Command
           shouldFilter
           value={search}
@@ -310,7 +310,7 @@ export function CommandPalette() {
             <Command.Input
               autoFocus
               placeholder="Search sections, projects, links, skills..."
-              className="h-9 w-full bg-transparent text-sm outline-none placeholder:text-neutral-500"
+              className="h-9 w-full bg-transparent text-base sm:text-sm outline-none placeholder:text-neutral-500"
             />
             <div className="hidden items-center gap-1 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-[11px] text-neutral-400 sm:flex shrink-0">
               <Sparkles className="h-3.5 w-3.5 text-cyan-300" />
@@ -318,7 +318,7 @@ export function CommandPalette() {
             </div>
           </div>
 
-          <Command.List className="max-h-[480px] overflow-y-auto p-2">
+          <Command.List className="max-h-[60dvh] sm:max-h-[480px] overflow-y-auto p-2">
             <Command.Empty className="px-4 py-10 text-center text-sm text-neutral-500">
               No matching command found.
             </Command.Empty>

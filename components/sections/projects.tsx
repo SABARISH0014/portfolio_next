@@ -110,23 +110,23 @@ export function Projects() {
           >
             <motion.div
               layoutId={`project-${activeProject.id}`}
-              className="relative w-full max-w-4xl overflow-hidden rounded-[2rem] border border-white/10 bg-neutral-900 shadow-[0_30px_120px_rgba(0,0,0,0.55)] my-auto"
+              className="relative w-full max-w-4xl max-h-[88dvh] overflow-y-auto rounded-[2rem] border border-white/10 bg-neutral-900 shadow-[0_30px_120px_rgba(0,0,0,0.55)] my-auto"
               transition={{ type: "spring", stiffness: 280, damping: 32, mass: 0.8 }}
               onClick={(event) => event.stopPropagation()}
             >
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.12),transparent_35%),radial-gradient(circle_at_bottom_right,rgba(255,255,255,0.05),transparent_30%)] pointer-events-none" />
               
-              <div className="relative p-6 sm:p-10 flex flex-col gap-10">
+              <div className="relative p-5 sm:p-10 flex flex-col gap-6 sm:gap-10">
                 <div className="flex items-start justify-between gap-4">
-                  <div className="flex items-center gap-5">
-                    <motion.div layoutId={`icon-container-${activeProject.id}`} className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-cyan-300/30 bg-cyan-400/10 text-cyan-200">
-                      <activeProject.icon className="h-7 w-7" />
+                  <div className="flex items-center gap-3.5 sm:gap-5">
+                    <motion.div layoutId={`icon-container-${activeProject.id}`} className="flex h-12 w-12 sm:h-16 sm:w-16 shrink-0 items-center justify-center rounded-2xl border border-cyan-300/30 bg-cyan-400/10 text-cyan-200">
+                      <activeProject.icon className="h-5 w-5 sm:h-7 sm:w-7" />
                     </motion.div>
                     <div>
-                      <motion.h3 layoutId={`title-${activeProject.id}`} className="font-display text-3xl font-semibold text-white sm:text-4xl">
+                      <motion.h3 layoutId={`title-${activeProject.id}`} className="font-display text-2xl font-semibold text-white sm:text-4xl">
                         {activeProject.title}
                       </motion.h3>
-                      <motion.p layoutId={`subtitle-${activeProject.id}`} className="mt-1 text-base text-cyan-200/80">
+                      <motion.p layoutId={`subtitle-${activeProject.id}`} className="mt-1 text-sm sm:text-base text-cyan-200/80">
                         {activeProject.subtitle}
                       </motion.p>
                     </div>

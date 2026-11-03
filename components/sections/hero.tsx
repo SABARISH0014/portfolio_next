@@ -22,7 +22,7 @@ export function Hero({ location }: { location?: string | null }) {
   return (
     <section
       id="top"
-      className="relative pt-14 lg:pt-20 pb-20 min-h-[90vh] flex flex-col justify-center"
+      className="relative pt-8 pb-12 lg:pt-20 lg:pb-20 min-h-[90vh] flex flex-col justify-center"
     >
       <AnimatedBackground />
 
@@ -54,11 +54,11 @@ export function Hero({ location }: { location?: string | null }) {
               initial={{ y: 32, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.08, duration: 0.6, ease: "easeOut" }}
-              className="font-display text-6xl font-semibold tracking-tight text-white sm:text-7xl lg:text-8xl"
+              className="font-display text-4xl sm:text-7xl lg:text-8xl font-semibold tracking-tight text-white"
             >
               <span className="block">I am</span>
-              <span className="flex items-center gap-3">
-                <span className="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-cyan-300/30 bg-cyan-400/10 text-lg font-semibold text-cyan-100 shadow-[0_0_36px_rgba(34,211,238,0.18)] sm:h-16 sm:w-16">
+              <span className="flex items-center gap-2.5 sm:gap-3">
+                <span className="inline-flex h-11 w-11 sm:h-16 sm:w-16 shrink-0 items-center justify-center rounded-full border border-cyan-300/30 bg-cyan-400/10 text-base sm:text-lg font-semibold text-cyan-100 shadow-[0_0_36px_rgba(34,211,238,0.18)]">
                   SP
                 </span>
                 Sabarish.

@@ -109,9 +109,9 @@ function JourneyItem({ entry, index, isLast, total, progress, onSelect }: Journe
             isExperience && "cursor-pointer group/card hover:border-cyan-400/30 hover:bg-white/[0.04]"
           )}
         >
-          <div className="flex items-start justify-between gap-3">
-            <h3 className="text-lg font-medium text-white">{entry.title}</h3>
-            <div className="flex items-center gap-2">
+          <div className="flex flex-wrap sm:flex-nowrap items-start justify-between gap-2.5 sm:gap-3">
+            <h3 className="text-base sm:text-lg font-medium text-white flex-1 min-w-[180px]">{entry.title}</h3>
+            <div className="flex items-center gap-2 shrink-0">
               <TypeBadge type={entry.type} />
               {isExperience && (
                 <button
@@ -191,7 +191,7 @@ export function Journey() {
             onClick={() => setSelectedEntry(null)}
           >
             <motion.div
-              className="relative w-full max-w-xl overflow-hidden rounded-[2rem] border border-white/10 bg-neutral-900/90 p-6 sm:p-8 shadow-[0_30px_120px_rgba(0,0,0,0.65)] backdrop-blur-2xl"
+              className="relative w-full max-w-xl max-h-[85dvh] overflow-y-auto rounded-[2rem] border border-white/10 bg-neutral-900/90 p-5 sm:p-8 shadow-[0_30px_120px_rgba(0,0,0,0.65)] backdrop-blur-2xl"
               initial={{ scale: 0.95, opacity: 0, y: 12 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.95, opacity: 0, y: 12 }}

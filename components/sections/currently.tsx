@@ -109,13 +109,13 @@ export function Currently() {
                       rel="noopener noreferrer"
                       className="mt-2 flex items-center gap-1.5 group"
                     >
-                      <span className="text-xl font-semibold text-white group-hover:text-cyan-200 transition-colors">
+                      <span className="break-words text-lg sm:text-xl font-semibold text-white group-hover:text-cyan-200 transition-colors">
                         {signals.latestRepoName}
                       </span>
                       <ExternalLink className="h-4 w-4 text-neutral-500 group-hover:text-cyan-300 transition-colors shrink-0" />
                     </a>
                   ) : (
-                    <div className="mt-2 text-xl font-semibold text-white">
+                    <div className="mt-2 break-words text-lg sm:text-xl font-semibold text-white">
                       {signals ? signals.latestRepoName : "Loading…"}
                     </div>
                   )}

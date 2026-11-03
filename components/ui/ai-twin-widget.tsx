@@ -104,7 +104,7 @@ export function AITwinWidget() {
       <button
         onClick={() => setIsOpen(true)}
         aria-label="Open AI Twin chat"
-        className={`fixed bottom-6 right-6 z-50 rounded-full bg-cyan-500/20 p-4 text-cyan-300 backdrop-blur-xl border border-cyan-500/30 shadow-[0_0_20px_rgba(34,211,238,0.2)] transition-all hover:bg-cyan-500/30 hover:scale-110 ${
+        className={`fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 rounded-full bg-cyan-500/20 p-3.5 sm:p-4 text-cyan-300 backdrop-blur-xl border border-cyan-500/30 shadow-[0_0_20px_rgba(34,211,238,0.2)] transition-all hover:bg-cyan-500/30 hover:scale-110 ${
           isOpen
             ? "scale-0 opacity-0 pointer-events-none"
             : "scale-100 opacity-100"
@@ -115,7 +115,7 @@ export function AITwinWidget() {
 
       {/* Chat panel */}
       {isOpen && (
-        <div className="fixed bottom-6 right-6 z-50 flex h-[500px] w-[350px] flex-col overflow-hidden rounded-2xl border border-white/10 bg-neutral-950/80 backdrop-blur-xl shadow-2xl animate-in zoom-in-95 duration-200">
+        <div className="fixed bottom-4 right-4 left-4 sm:left-auto sm:bottom-6 sm:right-6 z-50 flex h-[min(500px,78dvh)] w-auto sm:w-[360px] flex-col overflow-hidden rounded-2xl border border-white/10 bg-neutral-950/90 backdrop-blur-xl shadow-2xl animate-in zoom-in-95 duration-200">
 
           {/* Header */}
           <div className="flex items-center justify-between border-b border-white/10 bg-white/5 px-4 py-3">
@@ -201,7 +201,7 @@ export function AITwinWidget() {
               placeholder="Type your message..."
               disabled={isThinking}
               autoComplete="off"
-              className="flex-1 rounded-xl border border-white/10 bg-black/50 px-3 py-2 text-sm text-white outline-none placeholder:text-neutral-500 focus:border-cyan-500/50 transition-colors disabled:opacity-50"
+              className="flex-1 rounded-xl border border-white/10 bg-black/50 px-3 py-2 text-base sm:text-sm text-white outline-none placeholder:text-neutral-500 focus:border-cyan-500/50 transition-colors disabled:opacity-50"
             />
             <button
               type="submit"
