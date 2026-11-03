@@ -2,16 +2,33 @@
 
 import { useEffect, useState } from "react";
 import { BentoCard } from "@/components/ui/bento-card";
+import { Code2, GraduationCap, ExternalLink } from "lucide-react";
 
 type CurrentlyPayload = {
   githubStars: number;
   latestRepoName: string;
+  latestRepoUrl?: string;
+  latestRepoDescription?: string;
+  publicRepoCount?: number;
+  lastPushedAt?: string;
 };
 
-import { Code2, GraduationCap } from "lucide-react";
+function formatRelativeTime(iso: string): string {
+  const diff = Date.now() - new Date(iso).getTime();
+  const mins = Math.floor(diff / 60000);
+  if (mins < 60) return `${mins}m ago`;
+  const hrs = Math.floor(mins / 60);
+  if (hrs < 24) return `${hrs}h ago`;
+  const days = Math.floor(hrs / 24);
+  if (days < 30) return `${days}d ago`;
+  return new Date(iso).toLocaleDateString("en-US", { month: "short", day: "numeric" });
+}
 
 const updates = [
-  { text: "Building 'SubSage' & 'CipherSpend'.", icon: Code2 },
+  {
+    text: "Building 'CipherSpend' (Android NER SMS tracker) & 'SubSage'.",
+    icon: Code2
+  },
   { text: "Studying MCA @ PSG College of Technology.", icon: GraduationCap }
 ];
 
@@ -23,21 +40,19 @@ export function Currently() {
 
     const loadSignals = async () => {
       try {
-        const response = await fetch("/api/currently", { signal: controller.signal, cache: "no-store" });
-
-        if (!response.ok) {
-          throw new Error("Unable to load currently signals");
-        }
-
+        const response = await fetch("/api/currently", {
+          signal: controller.signal,
+          cache: "no-store"
+        });
+        if (!response.ok) throw new Error("Unable to load currently signals");
         const data = (await response.json()) as CurrentlyPayload;
         setSignals(data);
       } catch {
-        setSignals({ githubStars: 0, latestRepoName: "GitHub data unavailable" });
+        setSignals({ githubStars: 0, latestRepoName: "CipherSpend-v1" });
       }
     };
 
     void loadSignals();
-
     return () => controller.abort();
   }, []);
 
@@ -46,7 +61,9 @@ export function Currently() {
       <div className="mb-6 flex items-end justify-between gap-6">
         <div>
           <p className="text-sm uppercase tracking-[0.4em] text-cyan-300/70">Currently</p>
-          <h2 className="mt-3 font-display text-3xl font-semibold text-white sm:text-4xl">What I&apos;m focused on now</h2>
+          <h2 className="mt-3 font-display text-3xl font-semibold text-white sm:text-4xl">
+            What I&apos;m focused on now
+          </h2>
         </div>
       </div>
 
@@ -79,11 +96,34 @@ export function Currently() {
               <div className="grid gap-3 text-sm text-neutral-300 sm:grid-cols-2">
                 <div className="rounded-2xl border border-white/5 bg-white/[0.03] p-4">
                   <div className="text-neutral-500">Live stars</div>
-                  <div className="mt-2 text-xl font-semibold text-white">{signals ? signals.githubStars.toLocaleString() : "…"}</div>
+                  <div className="mt-2 text-xl font-semibold text-white">
+                    {signals ? signals.githubStars.toLocaleString() : "…"}
+                  </div>
                 </div>
                 <div className="rounded-2xl border border-white/5 bg-white/[0.03] p-4">
                   <div className="text-neutral-500">Latest push</div>
-                  <div className="mt-2 text-xl font-semibold text-white">{signals ? signals.latestRepoName : "Loading…"}</div>
+                  {signals?.latestRepoUrl ? (
+                    <a
+                      href={signals.latestRepoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-2 flex items-center gap-1.5 group"
+                    >
+                      <span className="text-xl font-semibold text-white group-hover:text-cyan-200 transition-colors">
+                        {signals.latestRepoName}
+                      </span>
+                      <ExternalLink className="h-4 w-4 text-neutral-500 group-hover:text-cyan-300 transition-colors shrink-0" />
+                    </a>
+                  ) : (
+                    <div className="mt-2 text-xl font-semibold text-white">
+                      {signals ? signals.latestRepoName : "Loading…"}
+                    </div>
+                  )}
+                  {signals?.lastPushedAt && (
+                    <div className="mt-1 text-xs text-neutral-500">
+                      {formatRelativeTime(signals.lastPushedAt)}
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

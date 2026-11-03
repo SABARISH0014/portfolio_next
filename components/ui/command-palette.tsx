@@ -83,8 +83,10 @@ const currentDegree = education[0];
 const sectionCommands: SectionCommand[] = [
   { type: "section", label: "Home", href: "/#top", icon: Home },
   { type: "section", label: "Arsenal", href: "/#arsenal", icon: Code2 },
+  { type: "section", label: "Currently", href: "/#currently", icon: Sparkles },
   { type: "section", label: "Journey", href: "/#journey", icon: BookOpen },
   { type: "section", label: "Projects", href: "/#projects", icon: Briefcase },
+  { type: "section", label: "Activity", href: "/#recent-activity", icon: Github },
   { type: "section", label: "Contact", href: "/#contact", icon: Mail },
 ];
 
@@ -189,8 +191,8 @@ const infoCommands: InfoCommand[] = [
   },
   {
     type: "info",
-    label: "Frameworks",
-    value: skills.frameworks.join(", "),
+    label: "AI & Backend",
+    value: skills.aiDataBackend.slice(0, 4).join(", "),
     icon: Code2,
   },
   {

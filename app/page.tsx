@@ -10,8 +10,6 @@ import { Projects } from "@/components/sections/projects";
 import { RecentActivity } from "@/components/sections/recent-activity";
 import { Contact } from "@/components/sections/contact";
 
-export const experimental_ppr = true;
-
 export default async function Home() {
   const headersList = await headers();
   const location = headersList.get("x-vercel-ip-city");

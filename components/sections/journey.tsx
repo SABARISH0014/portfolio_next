@@ -6,29 +6,38 @@ import { GraduationCap, Briefcase } from "lucide-react";
 import { BentoCard } from "@/components/ui/bento-card";
 import { resumeData } from "@/lib/data/resume";
 
-// Extracts the first 4-digit year anywhere in the string (handles "Aug. 2024 - Sep. 2024")
+// Extracts the first 4-digit year anywhere in the string (handles "Aug 2024 - Sep 2024")
 const extractYear = (str: string) => {
   const match = str.match(/\b(20\d{2})\b/);
   return match ? parseInt(match[1], 10) : 0;
 };
 
-const journey = [
-  ...resumeData.education.map(edu => ({
+type JourneyEntry = {
+  year: string;
+  title: string;
+  detail: string;
+  highlights?: string[];
+  type: "education" | "experience";
+};
+
+const journey: JourneyEntry[] = [
+  ...resumeData.education.map((edu) => ({
     year: edu.duration,
     title: `${edu.degree} @ ${edu.institution}`,
     detail: `${edu.score} · ${edu.location}`,
     type: "education" as const
   })),
-  ...resumeData.experience.map(exp => ({
+  ...resumeData.experience.map((exp) => ({
     year: exp.duration,
     title: `${exp.role} @ ${exp.company}`,
-    detail: exp.highlights[0] ?? exp.shortSummary,
+    detail: `${exp.location}`,
+    highlights: exp.highlights,
     type: "experience" as const
   }))
 ].sort((a, b) => extractYear(b.year) - extractYear(a.year));
 
 type JourneyItemProps = {
-  entry: (typeof journey)[number];
+  entry: JourneyEntry;
   index: number;
   isLast: boolean;
   total: number;
@@ -38,7 +47,7 @@ type JourneyItemProps = {
 const TypeBadge = ({ type }: { type: "education" | "experience" }) => {
   const Icon = type === "education" ? GraduationCap : Briefcase;
   return (
-    <div className="flex items-center gap-1.5 rounded-full border border-white/[0.06] bg-white/[0.03] px-2.5 py-1 text-[10px] uppercase tracking-[0.25em] text-neutral-500">
+    <div className="flex shrink-0 items-center gap-1.5 rounded-full border border-white/[0.06] bg-white/[0.03] px-2.5 py-1 text-[10px] uppercase tracking-[0.25em] text-neutral-500">
       <Icon className="h-3 w-3" />
       {type}
     </div>
@@ -47,25 +56,15 @@ const TypeBadge = ({ type }: { type: "education" | "experience" }) => {
 
 function JourneyItem({ entry, index, isLast, total, progress }: JourneyItemProps) {
   const segStart = index / total;
-  const segEnd   = Math.min((index + 1) / total, 1);
+  const segEnd = Math.min((index + 1) / total, 1);
 
-  const dotScale  = useTransform(progress, [segStart, segEnd], [0.55, 1]);
-  const dotGlow   = useTransform(progress, [segStart, segEnd], [0.08, 0.55]);
-  const dotShadow = useTransform(dotGlow, v => `0 0 ${20 * v}px rgba(34,211,238,${v})`);
+  const dotScale = useTransform(progress, [segStart, segEnd], [0.55, 1]);
+  const dotGlow = useTransform(progress, [segStart, segEnd], [0.08, 0.55]);
+  const dotShadow = useTransform(dotGlow, (v) => `0 0 ${20 * v}px rgba(34,211,238,${v})`);
   const lineScale = useTransform(progress, [segStart, segEnd], [0, 1]);
   const lineOpacity = useTransform(progress, [segStart, segEnd], [0.15, 0.5]);
 
   return (
-    /*
-     * Three-column flex row:
-     *   col-A  (w-5)   : dot  +  connecting line below it
-     *   col-B  (w-44)  : year label
-     *   col-C  (flex-1): card
-     *
-     * col-A uses `self-stretch` so it always matches the tallest column's height.
-     * The `flex-1` line inside col-A fills exactly the space from dot-bottom to
-     * row-bottom, touching the next row's dot.  Last item → no line rendered.
-     */
     <div className="flex items-start">
       {/* ── col-A: dot + line ── */}
       <div className="self-stretch hidden sm:flex flex-col items-center shrink-0 w-5">
@@ -101,7 +100,17 @@ function JourneyItem({ entry, index, isLast, total, progress }: JourneyItemProps
             <h3 className="text-lg font-medium text-white">{entry.title}</h3>
             <TypeBadge type={entry.type} />
           </div>
-          <p className="mt-2 text-sm leading-7 text-neutral-400">{entry.detail}</p>
+          <p className="mt-2 text-sm text-neutral-500">{entry.detail}</p>
+          {entry.highlights && entry.highlights.length > 0 && (
+            <ul className="mt-3 space-y-1.5">
+              {entry.highlights.map((h, i) => (
+                <li key={i} className="flex gap-2 text-sm leading-6 text-neutral-400">
+                  <span className="mt-1 shrink-0 text-cyan-400/70">•</span>
+                  <span>{h}</span>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       </div>
     </div>

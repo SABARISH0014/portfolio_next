@@ -1,106 +1,137 @@
 export const resumeData = {
   personalInfo: {
     name: "Sabarish P",
-    title: "Aspiring Software & Product Developer",
-    location: "Coimbatore, Tamil Nadu",
+    title: "Software, AI & Product Developer",
+    batch: "MCA Batch of 2027",
+    location: "Coimbatore, India",
+    summary:
+      "MCA student (Batch of 2027) based in Coimbatore. Passionate about exploring how models and systems work under the hood and building practical features that solve real-world problems. Skilled in Python (FastAPI, Pandas, Scikit-learn), JavaScript (Node.js, React.js), and Kotlin, with hands-on experience in text parsing, data extraction, and full-stack system design. Comfortable using Git for version control and leveraging modern AI coding tools daily to accelerate development, test ideas, and learn fast.",
     contact: {
       email: "sabarish.0014@gmail.com",
       phone: "+91 8148246432",
       linkedin: "linkedin.com/in/sabarishparthiban",
-      github: "github.com/SABARISH0014"
+      github: "github.com/SABARISH0014",
+      leetcode: "leetcode.com/u/SABARISH_P"
     }
   },
   education: [
     {
       institution: "PSG College of Technology",
       degree: "Master of Computer Applications",
-      duration: "2025 - Present",
+      duration: "July 2025 - Present",
       score: "CGPA: 7.94",
-      location: "Coimbatore, Tamil Nadu"
+      location: "Coimbatore, India"
     },
     {
       institution: "SRM Institute of Science and Technology",
       degree: "Bachelor of Computer Applications",
-      duration: "2022 - 2025",
+      duration: "July 2022 - May 2025",
       score: "CGPA: 9.36",
-      location: "Chennai, Tamil Nadu"
+      location: "Chennai, India"
     },
     {
       institution: "Swami Vivekananda Matric Hr Sec School",
       degree: "12th Grade",
-      duration: "2021 - 2022",
+      duration: "June 2021 - May 2022",
       score: "58%",
-      location: "Kanchipuram, Tamil Nadu"
+      location: "Kanchipuram, India"
     },
     {
       institution: "Swami Vivekananda Matric Hr Sec School",
       degree: "10th Grade",
-      duration: "2019 - 2020",
+      duration: "June 2019 - May 2020",
       score: "81%",
-      location: "Kanchipuram, Tamil Nadu"
+      location: "Kanchipuram, India"
     }
   ],
   experience: [
     {
-      role: "Web Development Intern",
-      company: "InternLearn",
-      duration: "Aug. 2024 - Sep. 2024",
+      role: "Web Development Virtual Intern",
+      company: "Internz Learn",
+      duration: "Aug 2024 - Sep 2024",
       location: "Chennai, India",
       highlights: [
-        "Collaborated effectively with a cross-functional team throughout the complete project life cycle, ensuring the design, testing, and deployment of software solutions strictly aligned with business needs, accelerating delivery timelines by 10%.",
-        "Leveraged strong analytical skills to troubleshoot complex system issues, debug legacy code, and implement tailored technical solutions that improved overall application stability by 15%."
+        "Built a personal portfolio website during a virtual internship, gaining hands-on exposure to how web systems are designed and run using Node.js.",
+        "Implemented basic server-side functionality, tested features, and performed systematic debugging based on mentor feedback.",
+        "Used Git for version control to track code changes, prioritize tasks independently, and communicate progress clearly."
       ],
-      shortSummary: "Virtual internship — built a simple web application."
+      shortSummary:
+        "Built a Node.js web system, implemented server-side logic, and performed systematic debugging using Git."
     }
   ],
   projects: [
     {
+      id: "cipherspend",
+      title: "CipherSpend",
+      subtitle: "Offline-First Android Finance Tracker",
+      description:
+        "Built an offline-first mobile application from scratch using Flutter, Core Java concepts, and a native Kotlin backend. Solved messy, unstructured text extraction problems by engineering an automated pipeline using native Android background receivers and custom Named Entity Recognition (NER) regex rules to parse bank SMS data. Configured local SQLite databases for reliable data storage and iterated on the parsing logic to improve extraction accuracy.",
+      tech: ["Flutter", "Kotlin", "Java", "NER Regex", "SQLite", "Android Receivers"],
+      githubUrl: "https://github.com/SABARISH0014/CipherSpend-v1",
+      details: [
+        { label: "Focus", value: "Offline finance & SMS NER" },
+        { label: "Outcome", value: "Automated SMS extraction" },
+        { label: "Core", value: "Kotlin receivers & SQLite" }
+      ],
+      caseStudy:
+        "CipherSpend pairs native Android background receivers with custom Named Entity Recognition (NER) regex rules to turn unstructured bank SMS alerts into structured local SQLite financial records — 100% offline."
+    },
+    {
       id: "subsage",
       title: "SubSage",
       subtitle: "Full-Stack Subscription Management System",
-      description: "Engineered a full-stack subscription management dashboard featuring interactive analytics to track monthly expenses. Integrated the Stripe API for scalable payment processing and implemented secure authentication flows using bcrypt and secure email transport for password recovery.",
-      tech: ["NodeJS", "Express", "MongoDB", "Stripe API", "bcrypt"],
+      description:
+        "Designed and built an end-to-end web application using JavaScript, Node.js, HTML, Express, and MongoDB. Developed production-style backend logic and RESTful APIs to manage user subscriptions, explore spending data, and visualize expense analytics. Integrated the Stripe API for payment processing and configured secure authentication flows for real-world usability.",
+      tech: ["JavaScript", "Node.js", "Express", "MongoDB", "RESTful APIs", "Stripe API"],
       githubUrl: "https://github.com/SABARISH0014/SubSage-Subscription_Management_System",
       details: [
-        { label: "Focus", value: "Subscription billing control" },
-        { label: "Outcome", value: "Payments + analytics" },
-        { label: "Core", value: "Stripe webhooks & auth" }
+        { label: "Focus", value: "Subscription & spend control" },
+        { label: "Outcome", value: "REST APIs + Stripe billing" },
+        { label: "Core", value: "Node.js, Express & MongoDB" }
       ],
-      caseStudy: "SubSage pairs auth, payments, and operational clarity into one cohesive subscription control surface. The expanded view is designed to feel like a live product teardown, not a static modal."
+      caseStudy:
+        "SubSage unifies subscription lifecycle management, RESTful API design, interactive expense analytics, and Stripe payment processing into one cohesive control surface."
     },
     {
       id: "mxshare",
       title: "MXShare",
       subtitle: "Educational Notes Sharing Platform",
-      description: "Architected a fast, modern web platform utilizing NextJS to facilitate the seamless distribution and collaborative sharing of educational resources. Tailored the solution to user needs by implementing direct cloud storage APIs, empowering users to intuitively select and upload files.",
-      tech: ["Next.JS", "Cloud Storage APIs"],
+      description:
+        "Developed a responsive web platform utilizing Next.js for collaborative educational resource sharing. Explored and integrated cloud storage APIs independently to streamline file-handling workflows and improve system design. Tested features with peers, gathered feedback, and iterated quickly to make the uploading experience faster and more intuitive.",
+      tech: ["Next.js", "React.js", "Cloud Storage APIs", "System Design"],
       githubUrl: "https://github.com/SABARISH0014/mx-share-new",
       details: [
-        { label: "Focus", value: "Notes discovery & sharing" },
-        { label: "Outcome", value: "Cloud storage ingestion" },
-        { label: "Core", value: "Cloud APIs integration" }
+        { label: "Focus", value: "Collaborative resource sharing" },
+        { label: "Outcome", value: "Streamlined cloud uploads" },
+        { label: "Core", value: "Next.js & Cloud Storage APIs" }
       ],
-      caseStudy: "MXShare organizes educational notes into a lightweight cloud-native flow with cloud storage ingestion and simple distribution for collaborative learning."
-    },
-    {
-      id: "cipherspend",
-      title: "CipherSpend",
-      subtitle: "Offline-First Finance Tracker App",
-      description: "Developed a 100% offline, privacy-first mobile application using Flutter and a native Kotlin backend, secured by encrypted local databases and a two-factor authentication flow. Engineered an automated expense-tracking system using native Android background receivers to intercept and parse bank SMS messages locally via custom regex rules.",
-      tech: ["Flutter", "Kotlin", "SQLCipher", "Android Receivers"],
-      githubUrl: "https://github.com/SABARISH0014/CipherSpend-v1",
-      details: [
-        { label: "Focus", value: "Offline finance tracking" },
-        { label: "Outcome", value: "Secure SMS parsing" },
-        { label: "Core", value: "SQLCipher & receivers" }
-      ],
-      caseStudy: "CipherSpend focuses on resilient local-first finance tracking with encrypted storage and background capture. The interaction surface mirrors the product's tactile, mobile-first intent."
+      caseStudy:
+        "MXShare streamlines academic note distribution through Next.js and direct cloud storage API ingestion, refined through rapid peer testing and UX iteration."
     }
   ],
   skills: {
-    languages: ["Java", "JavaScript", "Kotlin", "Dart", "C"],
-    frameworks: ["NodeJS", "Express", "NextJS", "Flutter"],
-    databasesAndTools: ["MongoDB", "SQLite", "Git"],
+    languages: ["Python", "JavaScript", "Java", "Kotlin", "C", "HTML", "CSS"],
+    aiDataBackend: [
+      "FastAPI",
+      "Pandas",
+      "Scikit-learn",
+      "Text Parsing (NER/Regex)",
+      "Node.js",
+      "Express",
+      "RESTful APIs"
+    ],
+    frontendMobileDb: ["React.js (Vite)", "Next.js", "Flutter", "SQLite", "MongoDB"],
+    toolsAndWorkflows: ["Git", "GitHub", "GitHub Actions", "AI-Assisted Coding & Testing"],
+    coreCompetencies: [
+      "Problem Solving",
+      "Fast Learning",
+      "System Design Basics",
+      "Adaptability",
+      "Clear Communication"
+    ],
+    // Backward-compatible aliases so existing consumers don't break
+    frameworks: ["Node.js", "Express", "Next.js", "Flutter", "FastAPI"],
+    databasesAndTools: ["MongoDB", "SQLite", "Git", "GitHub"],
     certifications: ["Programming in Java - NPTEL"]
   }
 };
